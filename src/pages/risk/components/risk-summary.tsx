@@ -20,7 +20,7 @@ const RiskSummary = () => {
     >
       <Grid container spacing={2} sx={{ width: "100%" }}>
         {/* Findings By Severity */}
-        <Grid size={{ sm: 12, md: 6, lg: 4 }}>
+        <Grid size={{ xs: 12, sm: 12, md: 6, lg: 4 }}>
           <Typography variant="h4" mb={"22px"}>
             Findings By Severity
           </Typography>
@@ -30,8 +30,8 @@ const RiskSummary = () => {
               alignItems: "center",
               gap: 2,
               justifyContent: "space-between",
-              pl: 1.5,
-              pr: 2,
+              pl: { md: 1.5 },
+              pr: { md: 2 },
             }}
           >
             <Box sx={{ display: "flex", alignItems: "start", flexDirection: "column", gap: 1 }}>
@@ -45,18 +45,19 @@ const RiskSummary = () => {
         </Grid>
         {/* Top Vulnerable Assets */}
         <Grid
-          size={{ sm: 12, md: 6, lg: 4 }}
+          size={{ xs: 12, sm: 12, md: 6, lg: 4 }}
           sx={{
             borderLeft: { md: "1px solid #E2E2EA" },
             borderRight: { lg: "1px solid #E2E2EA" },
-            px: 3,
+            px: { md: 3 },
+            py: { xs: 3, sm: 3 } 
           }}
         >
           <Typography variant="h4" mb={"22px"}>
             Top Vulnerable Assets
           </Typography>
           {/* header */}
-          <Box sx={{maxHeight:174,overflow: 'auto'}}>
+          <Box sx={{ maxHeight: 174, overflow: "auto" }}>
             <Grid container sx={{ borderBottom: "1px solid #EAECF0", py: 1.5 }}>
               <Grid size={7}>
                 <Typography
@@ -113,7 +114,7 @@ const RiskSummary = () => {
           </Box>
         </Grid>
         {/* Finding Per Source */}
-        <Grid size={{ sm: 12, md: 6, lg: 4 }} sx={{ px: 3 }}>
+        <Grid size={{ sm: 12, md: 6, lg: 4 }} sx={{ px: { md: 3 }}}>
           <Typography variant="h4" mb={"22px"}>
             Finding Per Source
           </Typography>
@@ -123,6 +124,7 @@ const RiskSummary = () => {
               alignItems: "center",
               gap: 2,
               justifyContent: "space-between",
+              flexWrap: { md: "nowrap", sm: "wrap", xs: "wrap" },
             }}
           >
             <Box sx={{ display: "flex", alignItems: "start", flexDirection: "column", gap: 3 }}>
@@ -132,7 +134,7 @@ const RiskSummary = () => {
                   display: "flex",
                   alignItems: "center",
                   borderLeft: "5px solid #5694FF",
-                  pl: 1.5,
+                  pl: { md: 1.5 },
                   gap: 1.5,
                 }}
               >

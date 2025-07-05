@@ -29,7 +29,7 @@ const RiskDashboard: React.FC = () => {
         }}
       >
 		{/* For mobile, add space for AppBar/Toolbar */}
-        {!isMdUp && <Box sx={{ height: 56 }} />}
+        {!isMdUp && <Box sx={{ height: 50 }} />}
         <Grid container spacing={2.5} sx={{ width: "100%", pr: { xs: 0, md: 3 },pb:3 }}>
           <Grid size={12}>
             <RiskSummary />
