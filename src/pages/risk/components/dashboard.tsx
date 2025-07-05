@@ -21,7 +21,7 @@ const RiskDashboard: React.FC = () => {
         sx={{
           flex: 1,
           mt: 2,
-          ml: { xs: 0, md: `${drawerWidth - 40}px` },
+          ml: { xs: 0, md: `${drawerWidth - 50}px` },
           p: 3,
           bgcolor: "background.default",
           minHeight: "100vh",

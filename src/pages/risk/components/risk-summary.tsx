@@ -56,59 +56,61 @@ const RiskSummary = () => {
             Top Vulnerable Assets
           </Typography>
           {/* header */}
-          <Grid container sx={{ borderBottom: "1px solid #EAECF0", py: 1.5 }}>
-            <Grid size={7}>
-              <Typography
-                fontWeight="600"
-                fontSize="12px"
-                textTransform="uppercase"
-                color="#9A9AAF"
-              >
-                Asset name
-              </Typography>
-            </Grid>
-            <Grid size={5}>
-              <Typography
-                fontWeight="600"
-                fontSize="12px"
-                textTransform="uppercase"
-                color="#9A9AAF"
-              >
-                severity
-              </Typography>
-            </Grid>
-          </Grid>
-          {/* assets data */}
-          {ASSETS_DATA.map((asset, index) => (
-            <Grid
-              container
-              sx={{
-                borderBottom: "1px solid #EAECF0",
-                py: 1.5,
-                display: "flex",
-                alignItems: "center",
-              }}
-              key={index}
-            >
+          <Box sx={{maxHeight:174,overflow: 'auto'}}>
+            <Grid container sx={{ borderBottom: "1px solid #EAECF0", py: 1.5 }}>
               <Grid size={7}>
                 <Typography
-                  fontWeight="400"
+                  fontWeight="600"
                   fontSize="12px"
                   textTransform="uppercase"
-                  color="#03165F"
+                  color="#9A9AAF"
                 >
-                  {asset.name}
+                  Asset name
                 </Typography>
               </Grid>
               <Grid size={5}>
-                <Box sx={{ display: "flex", gap: 1 }}>
-                  <Tag type="critical" label="C" number={asset.severity.critical} />
-                  <Tag type="high" label="H" number={asset.severity.high} />
-                  <Tag type="medium" label="M" number={asset.severity.medium} />
-                </Box>
+                <Typography
+                  fontWeight="600"
+                  fontSize="12px"
+                  textTransform="uppercase"
+                  color="#9A9AAF"
+                >
+                  severity
+                </Typography>
               </Grid>
             </Grid>
-          ))}
+            {/* assets data */}
+            {ASSETS_DATA.map((asset, index) => (
+              <Grid
+                container
+                sx={{
+                  borderBottom: "1px solid #EAECF0",
+                  py: 1.5,
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                key={index}
+              >
+                <Grid size={7}>
+                  <Typography
+                    fontWeight="400"
+                    fontSize="12px"
+                    textTransform="uppercase"
+                    color="#03165F"
+                  >
+                    {asset.name}
+                  </Typography>
+                </Grid>
+                <Grid size={5}>
+                  <Box sx={{ display: "flex", gap: 1 }}>
+                    <Tag type="critical" label="C" number={asset.severity.critical} />
+                    <Tag type="high" label="H" number={asset.severity.high} />
+                    <Tag type="medium" label="M" number={asset.severity.medium} />
+                  </Box>
+                </Grid>
+              </Grid>
+            ))}
+          </Box>
         </Grid>
         {/* Finding Per Source */}
         <Grid size={{ sm: 12, md: 6, lg: 4 }} sx={{ px: 3 }}>
