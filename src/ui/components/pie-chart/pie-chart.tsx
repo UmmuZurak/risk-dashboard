@@ -17,7 +17,7 @@ const settings = {
 const CustomPieChart: React.FC<Props> = ({ data, total }) => {
   return (
     <Box sx={{ position: "relative" }}>
-      <PieChart series={[{ innerRadius: 55, outerRadius: 70, data }]} {...settings} />
+      <PieChart series={[{ innerRadius: 55, outerRadius: 66,cornerRadius: 10, data }]} {...settings} />
       <Box
         sx={{
           position: "absolute",
