@@ -40,7 +40,7 @@ export const ASSETS_DATA = [
 
 export const SOURCE_DATA = [
   { label: "Microsoft Defender", value: 428, color: "#5694FF" },
-  { label: "Medium", value: 119, color: "#23618E" },
+  { label: "Artic Wolf", value: 119, color: "#23618E" },
 ];
 
 export const TABLE_DATA: Finding[] = [

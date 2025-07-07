@@ -50,14 +50,15 @@ const RiskSummary = () => {
             borderLeft: { md: "1px solid #E2E2EA" },
             borderRight: { lg: "1px solid #E2E2EA" },
             px: { md: 3 },
-            py: { xs: 3, sm: 3 } 
+            py: { xs: 3, sm: 3, md: 0 },
           }}
         >
           <Typography variant="h4" mb={"22px"}>
             Top Vulnerable Assets
           </Typography>
-          {/* header */}
-          <Box sx={{ maxHeight: 174, overflow: "auto" }}>
+
+          <Box>
+            {/* header */}
             <Grid container sx={{ borderBottom: "1px solid #EAECF0", py: 1.5 }}>
               <Grid size={7}>
                 <Typography
@@ -81,40 +82,42 @@ const RiskSummary = () => {
               </Grid>
             </Grid>
             {/* assets data */}
-            {ASSETS_DATA.map((asset, index) => (
-              <Grid
-                container
-                sx={{
-                  borderBottom: "1px solid #EAECF0",
-                  py: 1.5,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-                key={index}
-              >
-                <Grid size={7}>
-                  <Typography
-                    fontWeight="400"
-                    fontSize="12px"
-                    textTransform="uppercase"
-                    color="#03165F"
-                  >
-                    {asset.name}
-                  </Typography>
+            <Grid className="custom-scrollbar" sx={{ maxHeight: 135, overflow: "auto" }}>
+              {ASSETS_DATA.map((asset, index) => (
+                <Grid
+                  container
+                  sx={{
+                    borderBottom: "1px solid #EAECF0",
+                    py: 1.5,
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                  key={index}
+                >
+                  <Grid size={{ md: 7, sm: 6, xs: 6 }}>
+                    <Typography
+                      fontWeight="400"
+                      fontSize="12px"
+                      textTransform="uppercase"
+                      color="#03165F"
+                    >
+                      {asset.name}
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ md: 5, sm: 6, xs: 6 }}>
+                    <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                      <Tag type="critical" label="C" number={asset.severity.critical} />
+                      <Tag type="high" label="H" number={asset.severity.high} />
+                      <Tag type="medium" label="M" number={asset.severity.medium} />
+                    </Box>
+                  </Grid>
                 </Grid>
-                <Grid size={5}>
-                  <Box sx={{ display: "flex", gap: 1 }}>
-                    <Tag type="critical" label="C" number={asset.severity.critical} />
-                    <Tag type="high" label="H" number={asset.severity.high} />
-                    <Tag type="medium" label="M" number={asset.severity.medium} />
-                  </Box>
-                </Grid>
-              </Grid>
-            ))}
+              ))}
+            </Grid>
           </Box>
         </Grid>
         {/* Finding Per Source */}
-        <Grid size={{ sm: 12, md: 6, lg: 4 }} sx={{ px: { md: 3 }}}>
+        <Grid size={{ xs:12, sm: 12, md: 6, lg: 4 }} sx={{ px: { md: 3 } }}>
           <Typography variant="h4" mb={"22px"}>
             Finding Per Source
           </Typography>
