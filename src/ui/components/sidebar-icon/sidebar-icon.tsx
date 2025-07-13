@@ -1,20 +1,23 @@
 import React from "react";
 import { IconButton, Tooltip } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface SidebarIconProps {
-  icon: string;
+  icon:(isActive:boolean) =>string;
   label: string;
-  selected?: boolean;
+  active: boolean;
   onClick?: () => void;
+  path: string;
 }
 
-const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, label, selected, onClick }) => (
+const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, label, active, onClick,path }) => (
+  <Link to={path}>
   <Tooltip title={label} placement="right">
     <IconButton
       onClick={onClick}
       sx={{
         mb: 1.5,
-        bgcolor: selected ? "primary.main" : "transparent",
+        bgcolor: active ? "primary.main" : "transparent",
         "&:hover": {
           bgcolor: "primary.light",
           color: "#fff",
@@ -26,9 +29,11 @@ const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, label, selected, onClic
       }}
       disableRipple
     >
-      <img src={icon} alt={label} width={25} height={25} style={{ objectFit: "contain" }} />
+      <img src={icon(active)} alt={label} width={25} height={25} style={{ objectFit: "contain" }} />
     </IconButton>
   </Tooltip>
+  </Link>
+  
 );
 
 export default SidebarIcon;

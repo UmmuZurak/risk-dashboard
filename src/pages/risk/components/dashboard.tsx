@@ -1,48 +1,44 @@
-import React from "react";
-import { Box, useTheme, useMediaQuery, Grid } from "@mui/material";
-import Sidebar from "../../../ui/components/sidebar/sidebar";
+import { Grid } from "@mui/material";
 import RiskSummary from "./risk-summary";
 import FiltersBar from "./filters-bar";
 import RiskTable from "./risk-table";
 import { TABLE_DATA } from "../lib/mock-data/mock-data";
+import { useEffect, useState } from "react";
 
-const drawerWidth = 80;
+const RiskDashboard = () => {
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState(TABLE_DATA);
 
-const RiskDashboard: React.FC = () => {
-  const theme = useTheme();
-  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  useEffect(() => {
+    // Return all data if search is empty
+    if (search.trim() === "") {
+      setFilteredData(TABLE_DATA);
+      return;
+    }
 
-  const handleMobileToggle = () => setMobileOpen((prev) => !prev);
+    // Filter data by owner, asset, source
+    const filtered = TABLE_DATA.filter(
+      (item) =>
+        item.asset.toLowerCase().includes(search.toLowerCase()) ||
+        item.owner.toLowerCase().includes(search.toLowerCase()) ||
+        item.source.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredData(filtered);
+  }, [search]);
+
   return (
-    <Box sx={{ display: "flex", width: "100vw" }}>
-      <Sidebar mobileOpen={mobileOpen} onMobileToggle={handleMobileToggle} />
-      <Box
-        sx={{
-          flex: 1,
-          mt: 2,
-          ml: { xs: 0, md: `${drawerWidth - 50}px` },
-          p: 3,
-          bgcolor: "background.default",
-          minHeight: "100vh",
-          width: "100%",
-        }}
-      >
-        {/* For mobile, add space for top bar */}
-        {!isMdUp && <Box sx={{ height: 50 }} />}
-        <Grid container spacing={2.5} sx={{ width: "100%", pr: { xs: 0, md: 3 }, pb: 3 }}>
-          <Grid size={12}>
-            <RiskSummary />
-          </Grid>
-          <Grid size={12}>
-            <FiltersBar />
-          </Grid>
-          <Grid size={12}>
-            <RiskTable data={TABLE_DATA} />
-          </Grid>
-        </Grid>
-      </Box>
-    </Box>
+    <Grid container spacing={2.5}>
+      <Grid size={12}>
+        <RiskSummary />
+      </Grid>
+      <Grid size={12}>
+        <FiltersBar handleSearch={(search: string) => setSearch(search)} />
+      </Grid>
+      <Grid size={12}>
+        <RiskTable data={filteredData} />
+      </Grid>
+    </Grid>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import {
   Box,
   Drawer,
@@ -14,24 +15,57 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SidebarIcon from "../../../ui/components/sidebar-icon/sidebar-icon";
 import Logo from "../logo/logo";
 import __avatar from "../../../assets/avatar.svg";
-import __findings_icon from "../../../assets/nav-icons/inactive/findings.svg";
-import __dashboard_icon from "../../../assets/nav-icons/inactive/dashboard.svg";
+// active icons
 import __risk_icon from "../../../assets/nav-icons/active/risk.svg";
-import __security_icon from "../../../assets/nav-icons/inactive/security.svg";
-import __settings_icon from "../../../assets/nav-icons/inactive/settings.svg";
-import __bot_icon from "../../../assets/nav-icons/inactive/bot.svg";
+import __security_icon from "../../../assets/nav-icons/active/security.svg";
+import __settings_icon from "../../../assets/nav-icons/active/settings.svg";
+import __bot_icon from "../../../assets/nav-icons/active/bot.svg";
+import __findings_icon from "../../../assets/nav-icons/active/findings.svg";
+import __dashboard_icon from "../../../assets/nav-icons/active/dashboard.svg";
+// inactive icons
+import __inactive_risk_icon from "../../../assets/nav-icons/inactive/risk.svg";
+import __inactive_security_icon from "../../../assets/nav-icons/inactive/security.svg";
+import __inactive_settings_icon from "../../../assets/nav-icons/inactive/settings.svg";
+import __inactive_bot_icon from "../../../assets/nav-icons/inactive/bot.svg";
+import __inactive_findings_icon from "../../../assets/nav-icons/inactive/findings.svg";
+import __inactive_dashboard_icon from "../../../assets/nav-icons/inactive/dashboard.svg";
+
 const drawerWidth = 80;
 
 const navItems = [
-  { icon: __dashboard_icon, label: "Dashboard" },
-  { icon: __findings_icon, label: "Findings" },
-  { icon: __risk_icon, label: "Risk", selected: true },
-  { icon: __security_icon, label: "Security" },
+  {
+    icon: (isActive: boolean) => (isActive ? __dashboard_icon : __inactive_dashboard_icon),
+    label: "Dashboard",
+    path: "/dashboard",
+  },
+  {
+    icon: (isActive: boolean) => (isActive ? __findings_icon : __inactive_findings_icon),
+    label: "Findings",
+    path: "/findings",
+  },
+  {
+    icon: (isActive: boolean) => (isActive ? __risk_icon : __inactive_risk_icon),
+    label: "Risk",
+    path: "/",
+  },
+  {
+    icon: (isActive: boolean) => (isActive ? __security_icon : __inactive_security_icon),
+    label: "Security",
+    path: "/security",
+  },
 ];
 
 const bottomNavItems = [
-  { icon: __settings_icon, label: "Settings" },
-  { icon: __bot_icon, label: "Bot" },
+  {
+    icon: (isActive: boolean) => (isActive ? __settings_icon : __inactive_settings_icon),
+    label: "Settings",
+    path: "/settings",
+  },
+  {
+    icon: (isActive: boolean) => (isActive ? __bot_icon : __inactive_bot_icon),
+    label: "Bot",
+    path: "/bot",
+  },
 ];
 
 interface SidebarProps {
@@ -42,6 +76,7 @@ interface SidebarProps {
 const SidebarContent: React.FC = () => {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const location = useLocation();
   return (
     <Box
       sx={{
@@ -62,16 +97,34 @@ const SidebarContent: React.FC = () => {
       <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column", pt: 4 }}>
         {/* Top navigation icons */}
         <Stack spacing={0.5} flex={1} alignItems="center" width="100%">
-          {navItems.map((item, idx) => (
-            <SidebarIcon key={idx} icon={item.icon} label={item.label} selected={item.selected} />
-          ))}
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <SidebarIcon
+                key={item.label}
+                icon={item.icon}
+                label={item.label}
+                active={isActive}
+                path={item.path}
+              />
+            );
+          })}
         </Stack>
         <Divider sx={{ my: 1, width: 32 }} />
         {/* Bottom navigation icons */}
         <Stack spacing={0.5} flex={1} alignItems="center" width="100%">
-          {bottomNavItems.map((item, idx) => (
-            <SidebarIcon key={idx} icon={item.icon} label={item.label} />
-          ))}
+          {bottomNavItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <SidebarIcon
+                key={item.label}
+                icon={item.icon}
+                label={item.label}
+                active={isActive}
+                path={item.path}
+              />
+            );
+          })}
         </Stack>
       </Box>
 

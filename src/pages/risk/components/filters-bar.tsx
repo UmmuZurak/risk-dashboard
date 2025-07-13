@@ -4,6 +4,10 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SearchBar from "../../../ui/components/search-bar/search-bar";
 import FilterSelect from "../../../ui/components/filter-select/filter-select";
 
+interface FiltersBarProps {
+  handleSearch: (search: string) => void;
+}
+
 const filterOptions = [
   "Risk Level",
   "Asset",
@@ -16,7 +20,7 @@ const filterOptions = [
   "Risk State",
 ];
 
-const FiltersBar: React.FC = () => (
+const FiltersBar: React.FC<FiltersBarProps> = ({handleSearch}) => (
   <Box sx={{ display: "flex", justifyContent: "space-between", gap: 3 }}>
     <Box
       sx={{
@@ -26,9 +30,9 @@ const FiltersBar: React.FC = () => (
         gap: 1.5,
       }}
     >
-      <SearchBar />
+      <SearchBar handleSearch={handleSearch} />
       {filterOptions.map((opt) => (
-        <FilterSelect label={opt} />
+        <FilterSelect key={opt} label={opt} />
       ))}
     </Box>
     <Box
