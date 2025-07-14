@@ -140,7 +140,7 @@ const FindingsTable: React.FC<Props> = ({ data }) => (
           ))
         ) : (
           <TableRow>
-            <TableCell colSpan={LABELS.length} sx={{ textAlign: "center"}}>
+            <TableCell colSpan={LABELS.length} sx={{ textAlign: "center" }}>
               <Box
                 sx={{
                   display: "flex",

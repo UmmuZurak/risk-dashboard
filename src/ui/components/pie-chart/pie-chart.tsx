@@ -8,16 +8,20 @@ interface Props {
   }[];
   total?: number;
 }
-
+// These are settings for the pie chart
 const settings = {
   width: 150,
   height: 150,
   hideLegend: true,
 };
 const CustomPieChart: React.FC<Props> = ({ data, total }) => {
+  // This component renders a pie chart with a custom center label
   return (
     <Box sx={{ position: "relative" }}>
-      <PieChart series={[{ innerRadius: 55, outerRadius: 66,cornerRadius: 10, data }]} {...settings} />
+      <PieChart
+        series={[{ innerRadius: 55, outerRadius: 66, cornerRadius: 10, data }]}
+        {...settings}
+      />
       <Box
         sx={{
           position: "absolute",

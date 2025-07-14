@@ -11,6 +11,7 @@ interface SidebarIconProps {
 }
 
 const SidebarIcon: React.FC<SidebarIconProps> = ({ icon, label, active, onClick,path }) => (
+  // This component renders an icon button for the sidebar with a tooltip
   <Link to={path}>
   <Tooltip title={label} placement="right">
     <IconButton

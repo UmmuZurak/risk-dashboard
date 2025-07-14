@@ -30,8 +30,10 @@ import __inactive_bot_icon from "../../../assets/nav-icons/inactive/bot.svg";
 import __inactive_findings_icon from "../../../assets/nav-icons/inactive/findings.svg";
 import __inactive_dashboard_icon from "../../../assets/nav-icons/inactive/dashboard.svg";
 
+// Width of the sidebar drawer
 const drawerWidth = 80;
 
+// Top navigation items for sidebar
 const navItems = [
   {
     icon: (isActive: boolean) => (isActive ? __dashboard_icon : __inactive_dashboard_icon),
@@ -55,6 +57,7 @@ const navItems = [
   },
 ];
 
+// Bottom navigation items for sidebar
 const bottomNavItems = [
   {
     icon: (isActive: boolean) => (isActive ? __settings_icon : __inactive_settings_icon),
@@ -74,8 +77,10 @@ interface SidebarProps {
 }
 
 const SidebarContent: React.FC = () => {
+ // Use theme and media query to handle responsive design
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  // Get the current location to determine active navigation item
   const location = useLocation();
   return (
     <Box

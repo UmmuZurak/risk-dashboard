@@ -1,11 +1,13 @@
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-interface SearchBarProps {
-  handleSearch: (search: string) => void;
-}
+import { useRiskContext } from "../../../context/risk/risk-context";
 
-export default function SearchBar ({ handleSearch }: SearchBarProps) {
+export default function SearchBar() {
+  // Import the handleSearch function from the risk context
+  const { handleSearch } = useRiskContext();
+
+  // This component renders a search bar with an input field and a search icon
   return (
     <Paper
       elevation={0}

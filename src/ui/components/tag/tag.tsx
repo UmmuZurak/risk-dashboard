@@ -7,6 +7,7 @@ interface Props {
   type?: "critical" | "high" | "medium" | "low" | "exposed" | "grey";
 }
 const Tag: React.FC<Props> = ({ icon, label, number, type = "low" }) => {
+  // Define the styles for each tag type
   const tagType = {
     critical: { background: "error.light", color: "error.main" },
     high: { background: "warning.light", color: "warning.main" },
@@ -28,14 +29,17 @@ const Tag: React.FC<Props> = ({ icon, label, number, type = "low" }) => {
         borderRadius: "5.56px",
       }}
     >
+      {/* Display icon if defined */}
       {icon && (
         <img src={icon} alt={label} width={12.5} height={12.5} style={{ objectFit: "contain" }} />
       )}
+      {/* Display label if defined */}
       {label && (
         <Typography variant="body2" style={{ fontSize: "14px", fontWeight: 600 }}>
           {label}
         </Typography>
       )}
+      {/* Display number if defined */}
       {number && (
         <Typography
           variant="body2"

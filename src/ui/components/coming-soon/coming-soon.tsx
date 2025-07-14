@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 const ComingSoon = () => (
+  // This component displays a "Coming Soon" message centered on the page
   <Box
     sx={{
       display: "flex",

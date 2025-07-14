@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
-import __logo from "../../../assets/logo.svg"; // Adjust the path as necessary
+import __logo from "../../../assets/logo.svg";
 
 const Logo = () => (
+  // This component displays the logo in a circular box
   <Box
     sx={{
       width: 44,

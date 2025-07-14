@@ -4,7 +4,10 @@ import CustomPieChart from "../../../ui/components/pie-chart/pie-chart";
 import { ASSETS_DATA, SEVERITY_DATA, SOURCE_DATA } from "../lib/mock-data/mock-data";
 import __microsoft from "../../../assets/microsoft.svg";
 import __artic from "../../../assets/artic.svg";
+
 const RiskSummary = () => {
+  // This component renders the risk summary section with findings by severity, 
+  // top vulnerable assets, and findings per source
   return (
     <Box
       sx={{

@@ -29,7 +29,8 @@ const DashboardLayout = () => {
       >
         {/* For mobile, add space for top bar */}
         {!isMdUp && <Box sx={{ height: 50 }} />}
-
+        
+        {/* Outlet for passing children components */}
         <Box sx={{ width: "100%", pr: { xs: 0, md: 3 }, pb: 3 }}>
           <Outlet />
         </Box>
